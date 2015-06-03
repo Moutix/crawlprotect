@@ -1,0 +1,54 @@
+/*
+//----------------------------------------------------------------------
+//  CrawlTrack 3.2.0
+//----------------------------------------------------------------------
+// Crawler Tracker for website
+//----------------------------------------------------------------------
+// Author: Jean-Denis Brun
+//----------------------------------------------------------------------
+// Website: www.crawltrack.net
+//----------------------------------------------------------------------
+// That script is distributed under GNU GPL license
+//----------------------------------------------------------------------
+// file: styleinfohtml.css
+//----------------------------------------------------------------------
+// CSS base on a css example on www.alsacreations.com
+//----------------------------------------------------------------------
+*/
+
+body {
+  margin:0.5em; 
+background-color: #FFF;
+padding:150px;
+   }
+   
+   
+a:link, a:visited {
+  color: #000080;
+  text-decoration: underline;
+}
+
+a:hover{
+  color: #FF0000;
+  text-decoration: underline;
+}
+
+a:img {border: 0;}
+
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000080;
+   font-family: Verdana,Geneva, Arial, Helvetica, Sans-Serif;
+  text-align:center;
+}
+
+h2 {
+  font-size: 14px;
+  color: #000080;
+   font-family: Verdana,Geneva, Arial, Helvetica, Sans-Serif;
+  text-align:center; 
+}
+
+
+
