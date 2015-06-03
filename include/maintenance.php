@@ -103,6 +103,8 @@ if(!isset($tables_to_check) || empty($tables_to_check))
 		  `listindex` tinyint(3) NOT NULL,
 		  `badfile` varchar(245) NOT NULL,
 		  `url_image` varchar(245) NOT NULL,
+		  `prelude_onoff` tinyint(3) NOT NULL DEFAULT 0,
+		  `prelude_analyzer_name` varchar(245) NOT NULL DEFAULT 'Crawlprotect',
 		  PRIMARY KEY  (`id_site`)
 		)",
 			'insert_query' => ''

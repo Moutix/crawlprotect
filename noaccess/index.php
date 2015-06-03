@@ -17,10 +17,18 @@
 error_reporting(0);
 include "../include/connection.php";
 include "../include/functions.php";	
+
 $connexion = @mysql_connect($crawlthost,$crawltuser,$crawltpassword);
 $selection = @mysql_select_db($crawltdb);
+
+
 unset($crawltpassword);
 unset($crawltuser);
+
+
+
+
+
 //get site value
 if (isset($_GET['crawlprotecttype']))
 	{
@@ -129,7 +137,19 @@ if(isset($site) && isset($type))
 	$date = time();
 
 	$content=htmlspecialchars($content);
-	switch($type)
+	
+	$sql = "SELECT prelude_onoff, prelude_analyzer_name FROM crawlp_site_setting WHERE id_site=".$site."";
+  $requete = mysql_query($sql, $connexion);
+  $rowprelude = mysql_fetch_assoc($requete);
+
+if($rowprelude['prelude_onoff']==1)
+{
+  include "../include/preludelogging.php";
+	IdmefLogging($type, $content, $rowprelude['prelude_analyzer_name']);
+}
+
+
+switch($type)
 		{
 		case "spamreferer":
 		$sql ="INSERT INTO crawlp_stats (date,id_site, attack, url, ip) VALUES ( '".sql_quote($date)."','".sql_quote($site)."','".sql_quote($type)."','".sql_quote($content)."','".sql_quote($ip)."')";

@@ -207,7 +207,7 @@ sort($listhotlinkok);
 $htaccessdisplay=htmlentities($actualhtaccess);
 //change file type to display
 if($changefile=='ok')
-	{
+{
 	//get file & folder setting in case of changement	
 	if(isset($_POST['folderlevel']))
 		{
@@ -257,9 +257,26 @@ if($changefile=='ok')
 		{
 		$nologs = '0';
 		}		
+	if(isset($_POST['prelude_onoff']))
+		{
+		$prelude_onoff = $_POST['prelude_onoff'];
+		}
+	else
+	{
+		$prelude_onoff = '0';
+	}
+	if(isset($_POST['prelude_analyzer_name']))
+		{
+		$prelude_analyzer_name = $_POST['prelude_analyzer_name'];
+		}
+	else
+	{
+		$prelude_analyzer_name = 'Crawlprotect';
+	}
+
 	unset($_SESSION['filelist']);
 	unset($_SESSION['dirlist']);
-	$sql ="UPDATE crawlp_site_setting SET whichfile='".sql_quote($whichfile)."', folderlevel='".sql_quote($folderlevel)."', justbad='".sql_quote($justbad)."', nocache='".sql_quote($nocache)."',nostats='".sql_quote($nostats)."', nologs='".sql_quote($nologs)."'  WHERE id_site= '" . sql_quote($site) . "' ";
+	$sql ="UPDATE crawlp_site_setting SET whichfile='".sql_quote($whichfile)."', folderlevel='".sql_quote($folderlevel)."', justbad='".sql_quote($justbad)."', nocache='".sql_quote($nocache)."',nostats='".sql_quote($nostats)."', nologs='".sql_quote($nologs)."', prelude_onoff='".sql_quote($prelude_onoff)."', prelude_analyzer_name='".sql_quote($prelude_analyzer_name)."'  WHERE id_site= '" . sql_quote($site) . "' ";
 	$requete = mysql_query($sql, $connexion) or die(mysql_error());
 	}
 	
@@ -788,7 +805,33 @@ else
 	}
 
 
-echo"<br><hr>\n";
+echo "<br><hr>\n";
+
+$sql = "SELECT prelude_onoff, prelude_analyzer_name FROM crawlp_site_setting WHERE id_site=".$site."";
+$requete = mysql_query($sql, $connexion);
+$rowprelude = mysql_fetch_assoc($requete);
+
+
+echo "<h2>".$language['prelude_onoff']."</h2>";
+echo"<form action=\"index.php\" method=\"POST\">\n";
+echo"<div align='center'><table width=\"970px\"><tr><td align='center'>\n";
+echo "<input type=\"hidden\" name ='navig' value='1'>\n";
+echo "<input type=\"hidden\" name ='changefile' value='ok'>\n";	
+if($rowprelude['prelude_onoff']==1)
+{
+echo"<input type=\"radio\" name=\"prelude_onoff\" checked value=\"1\">On&nbsp;&nbsp;\n";
+echo"<input type=\"radio\" name=\"prelude_onoff\" value=\"0\">Off&nbsp;&nbsp;<br>\n";
+}
+else
+{
+echo"<input type=\"radio\" name=\"prelude_onoff\" value=\"1\">On&nbsp;&nbsp;\n";
+echo"<input type=\"radio\" name=\"prelude_onoff\" checked value=\"0\">Off&nbsp;&nbsp;<br>\n";
+}
+echo "<input type=\"text\" name=\"prelude_analyzer_name\" value=\"".$rowprelude['prelude_analyzer_name']."\" placeholder=\"".$language['prelude_analyzer_name']."\">\n";
+echo"<input name='ok' type='submit' value=\"OK\">\n";
+echo "</td></tr></table></div></form>";
+echo "<br><hr>\n";
+
 echo "<h2>".$language['parametersused']."</h2>";
 echo"<div align='center'><table width=\"970px\"><tr><td align='center'>\n";
 echo "<h2>".$language['trustip2']."</h2>";

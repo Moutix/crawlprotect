@@ -294,6 +294,8 @@ $language['badfileaccess']="Accès aux fichiers spéciaux";
 $language['listbadfile']="Autoriser l'accès aux types de fichiers suivants:";
 //3.2.4
 $language['alternatimage']="Si vous le souhaitez, vous pouvez forcer l'affichage d'une autre image en cas de hotlinking. Pour celà il suffit de saisir ci-dessous l'url de l'image de remplacement (sans http://)";
+$language['prelude_onoff']="Activation de Prelude";
+$language['prelude_analyzer_name']="Nom de l'analyseur";
 //country code
 $country = array(
 "ad" => "Andorre",
